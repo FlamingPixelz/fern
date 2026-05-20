@@ -1,0 +1,9 @@
+FROM node:22
+
+WORKDIR /workspace
+
+# Optional tools
+RUN apt-get update && apt-get install -y git
+
+# Keep container alive
+CMD ["sleep", "infinity"]
