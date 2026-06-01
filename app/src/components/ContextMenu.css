@@ -1,0 +1,274 @@
+/*
+ * Styles for context menu, custom schedule popup, and delete popup only.
+ * EditPropertiesPopup is handled separately.
+ */
+
+/* Context menu button */
+
+.context-menu-container {
+  position: relative;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.context-menu-trigger {
+  display: grid;
+  gap: 4px;
+  width: 28px;
+  height: 44px;
+  padding: 7px 9px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.context-menu-trigger span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1b1b1b;
+}
+
+/* Context menu panel */
+
+.context-menu-panel {
+  position: absolute;
+  right: 0;
+  top: 46px;
+  z-index: 50;
+  width: 210px;
+  padding: 8px;
+  border: 1.5px solid #c9c6c0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.context-menu-panel button {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #3f3f3f;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.context-menu-panel button:last-child {
+  border-bottom: 0;
+}
+
+.context-menu-panel button:hover,
+.context-menu-panel button:focus-visible {
+  background: #f1f5ec;
+  outline: none;
+}
+
+.context-menu-panel .danger {
+  color: #c94f46;
+}
+
+/* Shared popup layout */
+
+.context-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(60, 80, 50, 0.07);
+}
+
+.context-popup {
+  position: relative;
+  width: min(370px, 100%);
+  padding: 22px 26px 20px;
+  border: 1.5px solid #c9c6c0;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1f1f1f;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16), 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.context-popup,
+.context-popup * {
+  box-sizing: border-box;
+}
+
+.context-popup h2 {
+  margin: 0;
+  color: #1f1f1f;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.context-popup-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.context-popup-leaf {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.context-popup-divider {
+  height: 1px;
+  margin: 18px 0;
+  background: #dedbd5;
+}
+
+.context-popup-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  border: 0;
+  background: transparent;
+  color: #dd6d65;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.context-popup-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.context-popup-actions button {
+  min-width: 82px;
+  min-height: 38px;
+  padding: 7px 15px;
+  border: 1px solid #c7c3bc;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+  color: #3e3e3e;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.context-popup-actions .confirm {
+  border-color: #e5efd9;
+  background: #e6f0dc;
+  color: #2f6f2d;
+}
+
+.context-popup-actions .danger {
+  border-color: #f2d3cf;
+  background: #f8e4e1;
+  color: #c94f46;
+  text-transform: none;
+}
+
+.context-popup-actions .restore-default {
+  min-width: 0;
+  margin-right: auto;
+  padding-left: 0;
+  border-color: transparent;
+  background: transparent;
+  color: #4b4b4b;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Custom schedule popup */
+
+.schedule-popup {
+  width: min(430px, 100%);
+}
+
+.schedule-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.schedule-input-row input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #c7c3bc;
+  border-radius: 14px;
+  background: #f7f5f0;
+  color: #1f1f1f;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  outline: none;
+}
+
+.schedule-input-row input::placeholder {
+  color: #8c8982;
+  opacity: 1;
+}
+
+.schedule-input-row input:focus {
+  border-color: #8f9f7d;
+  box-shadow: 0 0 0 3px rgba(96, 126, 74, 0.16);
+}
+
+.schedule-input-row span {
+  color: #333333;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.schedule-warning {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border: 1px solid #efd7d3;
+  border-radius: 12px;
+  background: #fff2ef;
+  color: #9e463e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Delete plant popup */
+
+.delete-popup {
+  width: min(430px, 100%);
+}
+
+.delete-popup h3 {
+  margin: 0 0 8px;
+  color: #1f1f1f;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.delete-warning {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  border: 1px solid #efd7d3;
+  border-radius: 12px;
+  background: #fff2ef;
+  color: #9e463e;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
