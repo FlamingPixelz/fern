@@ -20,16 +20,17 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 					<img className="health-icon" src={healthIcon} alt={healthLabel}/>
 					 <span className = "tooltip">{healthTooltip}</span>
 				</div>
-				<button className = "context-button" onClick={onContextMenu}>⋮</button>
-			</div>
-			<div>
 				<div>
 					{isOverdue && (
-						<span>
+						<span className ="overdue">
 							Overdue {overdueDays} {overdueDays === 1 ? "day" : "days"}!
 						</span>
 					)}
 				</div>
+				<button className = "context-button" onClick={onContextMenu}>⋮</button>
+			</div>
+			<div>
+	
 			<div>
 				
 			</div>

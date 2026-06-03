@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   return (
 
-    <main>
+    <main className="dashboard">
       <WaterTodaySection
         plants={waterToday}
         onWatered={handleWatered}

@@ -1,4 +1,4 @@
-import '../Dashboard.css';
+import './PlantListItem.css';
 import PlantListItem from './PlantListItem';
  
 
@@ -16,8 +16,8 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
         </button>
       </div>
  
-      <div>
-        <ul>
+      <div className="plant-scroll-wrapper">
+        <ul className = "plant-list">
           {plants.map((plant) => (
             <PlantListItem
               key={plant.id}

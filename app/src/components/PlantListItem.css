@@ -141,3 +141,41 @@
   visibility: visible;
   opacity: 0.95;
 }
+
+.overdue {
+    color: red;
+    font-weight: 800;
+}
+
+.cards-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.plant-scroll-wrapper {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.plant-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.plant-scroll-wrapper::-webkit-scrollbar-track {
+  background: #f0ede8;
+  border-radius: 3px;
+}
+
+.plant-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #c8c4bc;
+  border-radius: 3px;
+}
+
+.plant-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: max-content;
+  list-style: none;
+  padding: 0.25rem 0;
+}

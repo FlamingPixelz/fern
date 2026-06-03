@@ -1,4 +1,4 @@
-import styles from '../Dashboard.css';
+import './PlantListItem';
 import WaterListItem from './WaterListItem';
 
 
@@ -14,7 +14,7 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
         Water today!
       </h2>
  
-      <div className={styles.waterCardsRow}>
+      <div className="cards-row">
         {plants.map((plant) => (
           <WaterListItem
             key={plant.id}
