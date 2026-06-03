@@ -7,10 +7,12 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 
   return (
     <section>
-      <h2>
-        <span>💧</span>
-        Water today!
-      </h2>
+      <div className="heading-bar">
+         <h2>
+          <span>💧</span>
+          Water today!
+        </h2>
+      </div>
       
       {plants.length === 0 ? (
         <div className="finish-watering">

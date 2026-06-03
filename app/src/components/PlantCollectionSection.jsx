@@ -5,13 +5,13 @@ import PlantListItem from './PlantListItem';
 export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onContextMenu = () => {} }) {
   return (
     <section>
-      <div>
+      <div className = "heading-bar">
         <h2>
-          <span></span>
+          <span>🍃</span>
           My Plants
         </h2>
  
-        <button onClick={onAddPlant}>
+        <button className = "add-plant-button" onClick={onAddPlant}>
           + Add new plant
         </button>
       </div>
