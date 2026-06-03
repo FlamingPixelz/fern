@@ -19,34 +19,35 @@ export default function PlantListItem({
 const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
  
   return (
-    <div class = "plant-card">
+    <div className = "plant-card">
     <li>
-      <div class = "container">
-        <div>
-          <div class="plant-name">{name}</div>
-          <div class="plant-species">{species}</div>
-        </div>
-        <button
+      <div className = "card-header">
+         <span>{healthIcon}</span>
+
+         <button
+          className = "card-button"
           onClick={onContextMenu}
           aria-label={`More options for ${name}`}
         >
           ⋮
         </button>
-         
-         <span>
-          {healthIcon}
-        </span>
       </div>
- 
+
+        <div className = "container">
+          <div className="plant-name">{name}</div>
+          <div className="plant-species">{species}</div>
+        </div>
+
       <img
       className= "plantImage"
       src={image}
       alt={`${name} plant`}
       />
  
-      <div class="card-location">{location}</div>
+      <div className="card-location">{location}</div>
  
-        <span class="plant-next-water"> 💧{nextWaterDays} Days </span>
+        <span className="plant-next-water"> 💧{nextWaterDays} Days </span>
+         
     </li>
     </div>
   );
