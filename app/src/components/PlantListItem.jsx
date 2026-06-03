@@ -23,8 +23,8 @@ const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
     <li>
       <div class = "container">
         <div>
-          <div>{name}</div>
-          <div>{species}</div>
+          <div class="plant-name">{name}</div>
+          <div class="plant-species">{species}</div>
         </div>
         <button
           onClick={onContextMenu}
@@ -44,9 +44,9 @@ const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
       alt={`${name} plant`}
       />
  
-      <div>{location}</div>
+      <div class="card-location">{location}</div>
  
-        <span> Number of days before water💧</span>
+        <span class="plant-next-water"> 💧{nextWaterDays} Days </span>
     </li>
     </div>
   );

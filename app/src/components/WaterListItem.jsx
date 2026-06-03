@@ -1,4 +1,4 @@
-import styles from "./PlantListItem.css";
+import "./PlantListItem.css";
 
 const HEALTH_ICONS = {
 	happy: { icon: "🙂", label: "happy" },
@@ -21,16 +21,16 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 						</span>
 					)}
 				</div>
-				<div>{name}</div>
-				<div>{species}</div>
+				<div class="plant-name">{name}</div>
+				<div class="plant-species">{species}</div>
 				<span>{healthIcon}</span>
 			</div>
 
 			<img className="plantImage" src={image} alt={`${name} plant`} />
 
-			<div className={styles.location}>{location}</div>
+			<div className="card-location">{location}</div>
 
-			<div className={styles.cardFooter}>
+			<div>
 				<button onClick={onWatered}>I've watered!</button>
 				<button onClick={onContextMenu}>⋮</button>
 			</div>
