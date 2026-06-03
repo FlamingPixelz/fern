@@ -1,18 +1,23 @@
 import './PlantListItem';
 import WaterListItem from './WaterListItem';
+import wateringcan from '../images/wateringcan.gif'
 
 
 export default function WaterTodaySection({ plants = [], onWatered = () => {}, onContextMenu = () => {} }) {
-  if (plants.length === 0) {
-    return null; 
-  }
- 
+
   return (
     <section>
       <h2>
         <span>💧</span>
         Water today!
       </h2>
+      
+      {plants.length === 0 ? (
+        <div className="finish-watering">
+          <img className = "finish-watering-gif" src={wateringcan} alt=""></img>
+          All caught up! No plants need watering today.
+        </div>
+      ) : (
  
       <div className="cards-row plant-scroll-wrapper">
         {plants.map((plant) => (
@@ -29,6 +34,7 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
           />
         ))}
       </div>
+      )}
     </section>
   );
 }

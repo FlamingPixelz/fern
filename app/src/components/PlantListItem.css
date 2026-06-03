@@ -179,3 +179,26 @@
   list-style: none;
   padding: 0.25rem 0;
 }
+
+.finish-watering {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  height: 320px;
+  color: #888;
+  border: 1.5px dashed #d0ccc6;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafaf8;
+  min-height: 150px;
+}
+
+.finish-watering-gif {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    opacity: 0.5;
+}
