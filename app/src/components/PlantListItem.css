@@ -244,3 +244,21 @@
 .add-plant-button:hover {
     background-color: #e1ffe4;
 }
+
+.log-button {
+  background: none;
+  border: 1px solid #ccc8c2;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.15s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-right: 20px;
+}
+
+.log-button:hover {
+    background-color: #e1f8ff;
+}
