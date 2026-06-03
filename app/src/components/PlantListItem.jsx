@@ -25,7 +25,7 @@ const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
          <span>{healthIcon}</span>
 
          <button
-          className = "card-button"
+          className = "context-button"
           onClick={onContextMenu}
           aria-label={`More options for ${name}`}
         >
@@ -33,10 +33,8 @@ const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
         </button>
       </div>
 
-        <div className = "container">
           <div className="plant-name">{name}</div>
           <div className="plant-species">{species}</div>
-        </div>
 
       <img
       className= "plantImage"

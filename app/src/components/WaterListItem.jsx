@@ -15,7 +15,7 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 		<div class="plant-card">
 			<div className ="card-header">
 				<span>{healthIcon}</span>
-				<button className = "card-button" onClick={onContextMenu}>⋮</button>
+				<button className = "context-button" onClick={onContextMenu}>⋮</button>
 			</div>
 			<div>
 				<div>
@@ -25,7 +25,9 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 						</span>
 					)}
 				</div>
-
+			<div>
+				
+			</div>
 				<div className="plant-name">{name}</div>
 				<div className="plant-species">{species}</div>
 			</div>
@@ -34,8 +36,8 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 
 			<div className="card-location">{location}</div>
 
-			<div>
-				<button onClick={onWatered}>I've watered!</button>
+			<div className ="container">
+				<button className="watered-button" onClick={onWatered}>I've watered!</button>
 			</div>
 		</div>
 	);

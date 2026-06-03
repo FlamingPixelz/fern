@@ -52,7 +52,9 @@
 }
 
 .container {
-    padding: 2px 16px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .card-location {
@@ -62,7 +64,7 @@
     margin-top: 10px;
 }
 
-.card-button {
+.context-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -75,9 +77,25 @@
   align-self: flex-end;
 }
 
-.card-button:hover {
+.context-button:hover {
   background: #f0ede8;
   color: #555;
+}
+
+.watered-button {
+
+    background: #edfafc;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px 80px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.watered-button:hover {
+    background: #c5e6ff;
+    transition: 0.3s;
 }
 
 .card-header {
