@@ -20,10 +20,12 @@ export default function PlantListItem({
 }) {
 
 const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
+const isOverdue = nextWaterDays < 0;
  
   return (
     <div className = "plant-card">
-    <li>
+      <div className={`water-card ${isOverdue ? "water-card-overdue" : ""}`}> 
+        <li>
       <div className = "card-header">
         <div className="icon-wrapper">
           <img className="health-icon" src={healthIcon} alt={healthLabel}/>
@@ -52,7 +54,7 @@ const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_
  
         <span className="plant-next-water"> 💧{nextWaterDays} Days </span>
          
-    </li>
+    </li></div>
     </div>
   );
 }

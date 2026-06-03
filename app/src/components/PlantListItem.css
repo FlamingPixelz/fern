@@ -149,6 +149,12 @@
     font-weight: 800;
 }
 
+.water-card-overdue {
+  background: #ffe7e7;
+  border-radius: 10px;
+}
+
+
 .cards-row {
     display: flex;
     gap: 1rem;
@@ -228,7 +234,6 @@
   font-weight: 600;
   color: #666;
   cursor: pointer;
-  font-family: inherit;
   transition: background 0.15s;
   margin-right: auto;
   margin-left: 10px;
