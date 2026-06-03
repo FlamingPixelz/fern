@@ -19,8 +19,9 @@ export default function PlantListItem({
 const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
  
   return (
+    <div class = "plant-card">
     <li>
-      <div>
+      <div class = "container">
         <div>
           <div>{name}</div>
           <div>{species}</div>
@@ -47,5 +48,6 @@ const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
  
         <span> Number of days before water💧</span>
     </li>
+    </div>
   );
 }

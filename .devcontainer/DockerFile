@@ -6,4 +6,4 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y git
 
 # Keep container alive
-CMD ["sleep", "infinity"]
+CMD ["sleep", "infinity"]`

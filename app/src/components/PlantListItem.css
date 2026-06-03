@@ -1,5 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Caveat:wght@400..700&display=swap');
+
 .plantImage {
     border-radius: 50%;
     width: 150px;
     height: 150px;
+}
+
+.plant-card {
+    background: #fffdf9;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 25%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 0.5px solid;
+    font-family:'Bricolage Grotesque', serif;
+}
+
+.plant-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
 }

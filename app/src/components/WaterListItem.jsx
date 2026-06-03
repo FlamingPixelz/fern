@@ -12,7 +12,7 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 	const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
 
 	return (
-		<div>
+		<div class="plant-card">
 			<div>
 				<div>
 					{isOverdue && (
@@ -21,6 +21,8 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 						</span>
 					)}
 				</div>
+				<div>{name}</div>
+				<div>{species}</div>
 				<span>{healthIcon}</span>
 			</div>
 
