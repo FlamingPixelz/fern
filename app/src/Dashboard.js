@@ -2,26 +2,25 @@ import './Dashboard.css';
 import WaterTodaySection from './components/WaterTodaySection';
 import MyPlantsSection from './components/PlantCollectionSection';
 import { plantInfo } from './plantData';
+import React from 'react';
 
 export default function Dashboard() {
 
-  // Plants sorted by due date
-  const waterToday = plantInfo
-    .filter((plant) => plant.nextWaterDays <= 0)
-    .sort((a, b) => a.nextWaterDays - b.nextWaterDays);
-
-  // All plants sorted by urgency 
-  const allPlants = plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays);
+  const [allPlants, updateAllPlants] = React.useState(plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays))
+  const [waterToday, updateWaterToday] = React.useState(allPlants.filter(p => p.nextWaterDays <= 0))
 
   const handleWatered = (plantId) => {
-    const index = plantInfo.find(p => p.id === plantId)
+    const copy = [...allPlants]
+    const index = copy.find(p => p.id === plantId)
     if (index === undefined) {
       console.error("Error, no plant with id:", plantId, "exists...")
       return
     }
-    const plant = plantInfo.splice(index, 1)[0]
+    const plant = copy.splice(index, 1)[0]
     plant.nextWaterDays = 7 // TODO: Add watering frequency to plant info so that this doesn't just increment by a week every time.
-    plantInfo.push(plant);
+    copy.push(plant);
+    updateAllPlants(copy);
+    updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
     console.log('Watered plant:', plantId);
   };
 
