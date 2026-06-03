@@ -14,7 +14,7 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
         Water today!
       </h2>
  
-      <div className="cards-row">
+      <div className="cards-row plant-scroll-wrapper">
         {plants.map((plant) => (
           <WaterListItem
             key={plant.id}
