@@ -26,6 +26,7 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
               location={plant.location}
               nextWaterDays={plant.nextWaterDays}
               image={plant.image}
+              health={plant.health}
               onContextMenu={() => onContextMenu(plant.id)}
             />
           ))}

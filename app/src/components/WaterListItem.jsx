@@ -1,20 +1,25 @@
-import "./PlantListItem.css";
+import './PlantListItem.css';
+import happyIcon from '../images/happyIcon.png'
+import neutralIcon from '../images/neutralIcon.png'
+import sadIcon from '../images/sadIcon.png'
 
-const HEALTH_ICONS = {
-	happy: { icon: "🙂", label: "happy" },
-	neutral: { icon: "😐", label: "neutral" },
-	sad: { icon: "😟", label: "unhappy" }
+ const HEALTH_ICONS = {
+  happy:   { icon: happyIcon, label: 'happy', tooltip: 'You water this plant very consistently!'},
+  neutral: { icon: neutralIcon, label: 'neutral', tooltip: 'The watering schedule for this plant has been mixed' },
+  sad:     { icon: sadIcon, label: 'unhappy', tooltip: 'Your plant needs more attention! Remember to water it on time!' },
 };
-
 export default function WaterListItem({ name = "Plant", species = "", location = "", nextWaterDays = 0, health = "neutral", image = null, onWatered = () => {}, onContextMenu = () => {} }) {
 	const isOverdue = nextWaterDays < 0;
 	const overdueDays = Math.abs(nextWaterDays);
-	const { icon: healthIcon } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
+	const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
 
 	return (
 		<div class="plant-card">
 			<div className ="card-header">
-				<span>{healthIcon}</span>
+				<div className = "icon-wrapper">
+					<img className="health-icon" src={healthIcon} alt={healthLabel}/>
+					 <span className = "tooltip">{healthTooltip}</span>
+				</div>
 				<button className = "context-button" onClick={onContextMenu}>⋮</button>
 			</div>
 			<div>
