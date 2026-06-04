@@ -35,7 +35,9 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 							name={plant.name}
 							species={plant.species}
 							location={plant.location}
+							interval={plant.interval}
 							nextWaterDays={plant.nextWaterDays}
+							lastWatered={plant.lastWatered}
 							image={speciesInfo[plant.species].image}
 							health={plant.health}
 							onDelete={() => onDelete(plant.id)}

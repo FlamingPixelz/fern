@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { recommendedWateringFrequency } from "../plantData";
 
-export default function CustomSchedulePopup({ onClose = () => {}, onUpdateSchedule = () => {} }) {
+export default function CustomSchedulePopup({ plantSpecies = "", onClose = () => {}, onUpdateSchedule = () => {} }) {
 	const [wateringDays, setWateringDays] = useState("");
+	const recommendation = recommendedWateringFrequency[plantSpecies] || "7-14 days";
+	const recommendationText = recommendation.replace(/\s*days?$/i, "").replace("-", " - ");
 
 	const getValidationMessage = () => {
 		if (wateringDays === "") {
@@ -30,7 +33,7 @@ export default function CustomSchedulePopup({ onClose = () => {}, onUpdateSchedu
 				</div>
 				<div className="context-popup-divider" />
 				<label className="schedule-input-row">
-					<input type="text" inputMode="numeric" value={wateringDays} onChange={event => setWateringDays(event.target.value)} placeholder="recommended 7 - 14" />
+					<input type="text" inputMode="numeric" value={wateringDays} onChange={event => setWateringDays(event.target.value)} placeholder={`recommended ${recommendationText}`} />
 					<span>days</span>
 				</label>
 				{validationMessage && <p className="schedule-warning">{validationMessage}</p>}

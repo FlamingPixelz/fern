@@ -10,7 +10,7 @@ const HEALTH_ICONS = {
   sad: { icon: sadIcon, label: "unhappy", tooltip: "Your plant needs more attention! Remember to water it on time!" }
 };
 
-export default function PlantListItem({ name = "Plant", species = "", location = "", nextWaterDays = 0, health = "neutral", image = null, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
+export default function PlantListItem({ name = "Plant", species = "", location = "", interval = null, nextWaterDays = 0, lastWatered = "", health = "neutral", image = null, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
   const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
   const isOverdue = nextWaterDays < 0;
   const overdueDays = Math.abs(nextWaterDays);
@@ -28,6 +28,9 @@ export default function PlantListItem({ name = "Plant", species = "", location =
               plantName={name}
               plantSpecies={species}
               plantLocation={location}
+              plantInterval={interval}
+              plantNextWaterDays={nextWaterDays}
+              plantLastWatered={lastWatered}
               onViewLog={() => alert("You are navigating to another page...")} 
               onUpdateProps={onEdit} 
               onDelete={onDelete} 

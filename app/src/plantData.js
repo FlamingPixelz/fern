@@ -52,6 +52,19 @@ export const speciesInfo = {
   }
 }
 
+export const recommendedWateringFrequency = {
+  Basil: "2-3 days",
+  Pothos: "7-14 days",
+  Succulent: "21-30 days",
+  "Snake Plant": "14-21 days",
+  "Peace Lily": "5-7 days",
+  Monstera: "7-10 days",
+  "Fiddle-leaf Fig": "7-10 days",
+  Lavender: "10-14 days",
+  "Aloe Vera": "21-28 days",
+  "Spider Plant": "7-10 days"
+}
+
 export const firstNames = [
   "Fern",
   "Rose",

@@ -6,6 +6,38 @@ import WelcomeMessage from './components/WelcomeMessage';
 import { firstNames, lastNames, plantInfo, plantLocations, speciesInfo } from './plantData';
 import EditPropertiesPopup from './components/EditPropertiesPopup';
 
+function parseLastWateredDate(value) {
+  if (!/^\d{2}\/\d{2}\/\d{4}$/.test(value || "")) return null
+
+  const [day, month, year] = value.split("/").map(Number)
+  const date = new Date(year, month - 1, day)
+  const isRealDate = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
+
+  if (!isRealDate) return null
+
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  if (date > today) return null
+
+  return date
+}
+
+function getDaysSince(date) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  return Math.floor((today - date) / (1000 * 60 * 60 * 24))
+}
+
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0")
+  const month = String(date.getMonth() + 1).padStart(2, "0")
+  const year = date.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
+
 export default function Dashboard() {
 
   const [allPlants, updateAllPlants] = React.useState(plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays))
@@ -22,6 +54,7 @@ export default function Dashboard() {
     }
     const plant = copy.splice(index, 1)[0]
     plant.nextWaterDays = plant.interval
+    plant.lastWatered = formatDate(new Date())
     copy.push(plant);
     updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays));
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
@@ -38,8 +71,14 @@ export default function Dashboard() {
     if (props.name && props.name.length) copy[index].name = props.name
     if (props.species && props.species.length && props.species in speciesInfo) copy[index].species = props.species
     if (props.location && props.location.length) copy[index].location = props.location
+    if (Number.isInteger(props.wateringFrequency) && props.wateringFrequency > 0) copy[index].interval = props.wateringFrequency
+    if (props.lastWatered && props.lastWatered.length) {
+      copy[index].lastWatered = props.lastWatered
+      const lastWateredDate = parseLastWateredDate(props.lastWatered)
+      if (lastWateredDate) copy[index].nextWaterDays = copy[index].interval - getDaysSince(lastWateredDate)
+    }
 
-    updateAllPlants(copy)
+    updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays))
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
   }
 
@@ -72,13 +111,17 @@ export default function Dashboard() {
     const id = Math.max(...allPlants.map(p => p.id)) + 1
     const copy = [...allPlants]
     const species = props.species && props.species.length && props.species in speciesInfo ? props.species : pick(Object.keys(speciesInfo))
+    const interval = Number.isInteger(props.wateringFrequency) && props.wateringFrequency > 0 ? props.wateringFrequency : speciesInfo[species].waterInterval
+    const lastWateredDate = parseLastWateredDate(props.lastWatered)
+    const nextWaterDays = lastWateredDate ? interval - getDaysSince(lastWateredDate) : interval
     const plant = {
       id,
       name: props.name && props.name.length ? props.name : pick(firstNames) + " " + pick(lastNames),
       location: props.location && props.location.length ? props.location : pick(plantLocations),
       species: species,
-      interval: speciesInfo[species].waterInterval,
-      nextWaterDays: speciesInfo[species].waterInterval,
+      interval,
+      nextWaterDays,
+      lastWatered: props.lastWatered || "",
       health: "happy"
     }
     copy.push(plant)

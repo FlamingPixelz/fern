@@ -30,7 +30,9 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 							name={plant.name}
 							species={plant.species}
 							location={plant.location}
+							interval={plant.interval}
 							nextWaterDays={plant.nextWaterDays}
+							lastWatered={plant.lastWatered}
 							health={plant.health}
 							image={speciesInfo[plant.species].image}
 							onWatered={() => onWatered(plant.id)}

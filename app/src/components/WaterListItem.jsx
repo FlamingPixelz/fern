@@ -9,7 +9,7 @@ const HEALTH_ICONS = {
 	neutral: { icon: neutralIcon, label: "neutral", tooltip: "The watering schedule for this plant has been mixed" },
 	sad: { icon: sadIcon, label: "unhappy", tooltip: "Your plant needs more attention! Remember to water it on time!" }
 };
-export default function WaterListItem({ name = "Plant", species = "", location = "", nextWaterDays = 0, health = "neutral", image = null, onWatered = () => {}, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
+export default function WaterListItem({ name = "Plant", species = "", location = "", interval = null, nextWaterDays = 0, lastWatered = "", health = "neutral", image = null, onWatered = () => {}, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
 	const isOverdue = nextWaterDays < 0;
 	const overdueDays = Math.abs(nextWaterDays);
 	const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
@@ -32,7 +32,18 @@ export default function WaterListItem({ name = "Plant", species = "", location =
 					{/* <button className="context-button" onClick={onContextMenu}>
 						⋮
 					</button> */}
-					<ContextMenu plantName={name} onViewLog={() => alert("You are navigating to another page...")} onUpdateProps={onEdit} onDelete={onDelete} onSchedule={onSchedule} />
+					<ContextMenu
+						plantName={name}
+						plantSpecies={species}
+						plantLocation={location}
+						plantInterval={interval}
+						plantNextWaterDays={nextWaterDays}
+						plantLastWatered={lastWatered}
+						onViewLog={() => alert("You are navigating to another page...")}
+						onUpdateProps={onEdit}
+						onDelete={onDelete}
+						onSchedule={onSchedule}
+					/>
 				</div>
 				<div>
 					<div></div>

@@ -4,10 +4,31 @@ import DeletePlantPopup from "./DeletePlantPopup";
 import "./Components.css";
 import EditPropertiesPopup from "./EditPropertiesPopup";
 
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
+function deriveLastWatered(interval, nextWaterDays) {
+  if (!Number.isFinite(interval) || !Number.isFinite(nextWaterDays)) return "";
+
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() - (interval - nextWaterDays));
+
+  return formatDate(date);
+}
+
 export default function ContextMenu({ 
   plantName = "your plant",
   plantSpecies = "",
   plantLocation = "",
+  plantInterval = null,
+  plantNextWaterDays = null,
+  plantLastWatered = "",
   onViewLog = () => {}, 
   onUpdateProps = () => {}, 
   onDelete = () => {}, 
@@ -16,6 +37,7 @@ export default function ContextMenu({
   const menuRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activePopup, setActivePopup] = useState(null);
+  const initialLastWatered = plantLastWatered || deriveLastWatered(plantInterval, plantNextWaterDays);
 
   useEffect(() => {
     if (!isMenuOpen) return undefined;
@@ -50,6 +72,7 @@ export default function ContextMenu({
       )}
       {activePopup === "schedule" && (
         <CustomSchedulePopup
+          plantSpecies={plantSpecies}
           onClose={closeAll}
           onUpdateSchedule={days => { closeAll(); onSchedule(days); }}
         />
@@ -63,6 +86,8 @@ export default function ContextMenu({
           initialName={plantName}
           initialSpecies={plantSpecies}
           initialLocation={plantLocation}
+          initialWateringFrequency={plantInterval}
+          initialLastWatered={initialLastWatered}
           onCancel={closeAll}
           onOk={props => { closeAll(); onUpdateProps(props); }}
         />
