@@ -24,9 +24,43 @@ export default function Dashboard() {
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
   };
 
-  const handleEdit = (plantId, props) => { }
-  const handleDelete = (plantId) => { }
-  const handleSchedule = (plantId, days) => { }
+  const handleEdit = (plantId, props) => {
+    const copy = [...allPlants]
+    const index = copy.findIndex(p => p.id === plantId)
+    if (index === -1) {
+      console.error("Error, no plant with id:", plantId, "exists...")
+      return
+    }
+    copy[index].name = props.name
+    copy[index].species = props.species
+    copy[index].location = props.location
+
+    updateAllPlants(copy)
+    updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
+  }
+
+  const handleDelete = (plantId) => {
+    const copy = [...allPlants]
+    const index = copy.findIndex(p => p.id === plantId)
+    if (index === -1) {
+      console.error("Error, no plant with id:", plantId, "exists...")
+      return
+    }
+    copy.splice(index, 1)
+    updateAllPlants(copy)
+    updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
+  }
+  const handleSchedule = (plantId, days) => {
+    const copy = [...allPlants]
+    const index = copy.findIndex(p => p.id === plantId)
+    if (index === -1) {
+      console.error("Error, no plant with id:", plantId, "exists...")
+      return
+    }
+    copy[index].interval = days
+    updateAllPlants(copy)
+    updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
+  }
 
   return (
 
