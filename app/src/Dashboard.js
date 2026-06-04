@@ -3,7 +3,7 @@ import './Dashboard.css';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
 import WelcomeMessage from './components/WelcomeMessage';
-import { plantInfo } from './plantData';
+import { plantInfo, speciesInfo } from './plantData';
 
 export default function Dashboard() {
 
@@ -31,9 +31,9 @@ export default function Dashboard() {
       console.error("Error, no plant with id:", plantId, "exists...")
       return
     }
-    copy[index].name = props.name
-    copy[index].species = props.species
-    copy[index].location = props.location
+    if (props.name && props.name.length) copy[index].name = props.name
+    if (props.species && props.species.length && props.species in Object.keys(speciesInfo)) copy[index].species = props.species
+    if (props.location && props.location.length) copy[index].location = props.location
 
     updateAllPlants(copy)
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));

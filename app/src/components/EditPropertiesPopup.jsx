@@ -2,7 +2,7 @@ import { useState } from "react";
 import { speciesInfo } from "../plantData";
 
 export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => {} }) {
-	const [name, setName] = useState("");
+	const [plantName, setName] = useState("");
 	const [species, setSpecies] = useState("");
 	const [location, setLocation] = useState("");
 
@@ -18,7 +18,7 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 
 				<div className="field-row">
 					<label className="label">Name</label>
-					<input className="text-input" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Plant name" />
+					<input className="text-input" type="text" value={plantName} onChange={e => setName(e.target.value)} placeholder="Plant name" />
 				</div>
 
 				<div className="field-row">
@@ -47,7 +47,7 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 					<button className="cancel-btn" onClick={onCancel}>
 						Cancel
 					</button>
-					<button className="ok-btn" onClick={() => onOk({ name, species, location })}>
+					<button className="ok-btn" onClick={() => onOk({ name: plantName, species, location })}>
 						OK
 					</button>
 				</div>
