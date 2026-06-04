@@ -1,10 +1,20 @@
 import "./PlantListItem";
 import "./Components.css";
+import { useRef } from "react";
 import WaterListItem from "./WaterListItem";
 import wateringcan from "../images/wateringcan.gif";
 import { speciesInfo } from "../plantData";
 
 export default function WaterTodaySection({ plants = [], onWatered = () => {}, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
+	const scrollRef = useRef(null);
+
+	const handleWheel = (event) => {
+		if (scrollRef.current) {
+			event.preventDefault();
+			scrollRef.current.scrollLeft += event.deltaY * 4;
+		}
+	};
+
 	return (
 		<section>
 			<div className="heading-bar">
@@ -23,7 +33,11 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 					All caught up! No plants need watering today.
 				</div>
 			) : (
-				<div className="cards-row plant-scroll-wrapper">
+				<div
+					ref={scrollRef}
+					className="cards-row plant-scroll-wrapper"
+					onWheel={handleWheel}
+				>
 					{plants.map(plant => (
 						<WaterListItem
 							key={plant.id}

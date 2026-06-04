@@ -161,6 +161,7 @@
 .plant-scroll-wrapper {
 	overflow-x: auto;
 	padding-bottom: 0.5rem;
+	scroll-behavior: smooth;
 }
 
 .plant-scroll-wrapper::-webkit-scrollbar {

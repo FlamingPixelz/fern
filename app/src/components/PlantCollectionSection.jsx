@@ -1,4 +1,5 @@
 import "./Components.css";
+import { useRef } from "react";
 import PlantListItem from "./PlantListItem";
 import { speciesInfo } from "../plantData";
 import alivePlant from "../images/alocasia.png"
@@ -7,6 +8,15 @@ import deadPlant from "../images/dead.png"
 export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onDelete = () => {}, onEdit = () => {}, onSchedule = () => {} }) {
 	const plantsInGoodHealth = plants.filter(p => p.health === "happy").length;
 	const plantsInBadHealth = plants.filter(p => p.health === "sad").length;
+	const scrollRef = useRef(null);
+
+	const handleWheel = (event) => {
+		if (scrollRef.current) {
+			event.preventDefault();
+			scrollRef.current.scrollLeft += event.deltaY * 4;
+		}
+	};
+
 	return (
 		<section>
 			<div className="heading-bar">
@@ -27,7 +37,11 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 
 			</div>
 
-			<div className="plant-scroll-wrapper">
+			<div
+				ref={scrollRef}
+				className="plant-scroll-wrapper"
+				onWheel={handleWheel}
+			>
 				<ul className="plant-list">
 					{plants.map(plant => (
 						<PlantListItem
