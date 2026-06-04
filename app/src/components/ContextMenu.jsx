@@ -32,7 +32,7 @@ export default function ContextMenu({ plantName = "your plant", onViewLog = () =
 		setActivePopup(null);
 	};
 
-	const openSchedulePopup = () => {
+	const handleCustomSchedule = () => {
 		setIsMenuOpen(false);
 		setActivePopup("schedule");
 	};
@@ -62,7 +62,7 @@ export default function ContextMenu({ plantName = "your plant", onViewLog = () =
 
 			{isMenuOpen && (
 				<div className="context-menu-panel">
-					<button type="button" onClick={openSchedulePopup}>
+					<button type="button" onClick={handleCustomSchedule}>
 						Customise schedule
 					</button>
 					<button type="button" onClick={handleEditProperties}>
