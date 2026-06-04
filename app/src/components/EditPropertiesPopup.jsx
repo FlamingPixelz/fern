@@ -6,7 +6,7 @@ export default function EditPropertiesPopup({
   onOk = () => {},
   initialName = "",
   initialSpecies = "",
-  initialLocation = ""
+  initialLocation = "",
   title = "Add Plant Properties"
 }) {
   const [plantName, setName] = useState(initialName);
