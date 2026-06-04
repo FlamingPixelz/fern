@@ -11,11 +11,11 @@ export default function WelcomeMessage({ allPlants = [], waterToday = [] }) {
 					<p>Today is {new Date().toDateString()}.</p>						
 				</div>
 			</div>
-			<div className="welcome-message">
+			{/* <div className="welcome-message">
 				<p>Plants to water today: {waterToday.length}</p>
 				<p>Plants in good health: {plantsInGoodHealth}</p>
 				<p>Plants that need some more love: {plantsInBadHealth}</p>
-			</div>
+			</div> */}
 		</section>
 	);
 }

@@ -3,6 +3,9 @@ import PlantListItem from "./PlantListItem";
 import { speciesInfo } from "../plantData";
 
 export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onContextMenu = () => {} }) {
+	const plantsInGoodHealth = plants.filter(p => p.health === "happy").length;
+	const plantsInBadHealth = plants.filter(p => p.health === "sad").length;
+
 	return (
 		<section>
 			<div className="heading-bar">
@@ -14,6 +17,9 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 				<button className="add-plant-button" onClick={onAddPlant}>
 					+ Add new plant
 				</button>
+
+				<span className="welcome-message"> Healthy: {plantsInGoodHealth}</span>
+        		<span className="welcome-message"> Needs Love: {plantsInBadHealth}</span>
 			</div>
 
 			<div className="plant-scroll-wrapper">
