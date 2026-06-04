@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   const handleWatered = (plantId) => {
     const copy = [...allPlants]
-    const index = copy.find(p => p.id === plantId)
+    const index = copy.findIndex(p => p.id === plantId)
     if (index === undefined) {
       console.error("Error, no plant with id:", plantId, "exists...")
       return
