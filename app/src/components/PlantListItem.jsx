@@ -13,6 +13,7 @@ const HEALTH_ICONS = {
 export default function PlantListItem({ name = "Plant", species = "", location = "", nextWaterDays = 0, health = "neutral", image = null, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
 	const { icon: healthIcon, label: healthLabel, tooltip: healthTooltip } = HEALTH_ICONS[health] ?? HEALTH_ICONS.neutral;
 	const isOverdue = nextWaterDays < 0;
+	const overdueDays = Math.abs(nextWaterDays);
 
 	return (
 		<div className="plant-card">
@@ -37,7 +38,17 @@ export default function PlantListItem({ name = "Plant", species = "", location =
 
 					<div className="card-location">{location}</div>
 
-					<span className="plant-next-water"> 💧{nextWaterDays} Days </span>
+					{isOverdue ? (
+						<span className="plant-next-water">
+							{" "}
+							💧Overdue {overdueDays} Day{overdueDays === 1 ? "" : "s"}{" "}
+						</span>
+					) : (
+						<span className="plant-next-water">
+							{" "}
+							💧{nextWaterDays} Day{nextWaterDays === 1 ? "" : "s"}{" "}
+						</span>
+					)}
 				</li>
 			</div>
 		</div>
