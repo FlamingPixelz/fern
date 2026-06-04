@@ -1,4 +1,5 @@
 import "./PlantListItem";
+import "./Components.css";
 import WaterListItem from "./WaterListItem";
 import wateringcan from "../images/wateringcan.gif";
 import { speciesInfo } from "../plantData";
