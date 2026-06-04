@@ -32,11 +32,89 @@ export const speciesInfo = {
   }
 }
 
-export const plantInfo = [
-  { id: 1, name: "Basil", species: "Basil", location: "Kitchen Windowsill", nextWaterDays: -2, health: "sad" },
-  { id: 2, name: "Perry", species: "Pothos", location: "Kitchen Window", nextWaterDays: 0, health: "neutral" },
-  { id: 3, name: "Susan", species: "Succulent", location: "Bedroom Window", nextWaterDays: 0, health: "happy" },
-  { id: 4, name: "Snakey", species: "Snake Plant", location: "Hallway", nextWaterDays: 1, health: "happy" },
-  { id: 5, name: "Lily", species: "Peace Lily", location: "Bedroom", nextWaterDays: 3, health: "neutral" },
-  { id: 6, name: "Monsta", species: "Monstera", location: "Living Room", nextWaterDays: 7, health: "happy" },
-];
+function createSamplePlants(count = 10) {
+  const firstNames = [
+    "Fern",
+    "Rose",
+    "Ivy",
+    "Lily",
+    "Sage",
+    "Willow",
+    "Basil",
+    "Clover",
+    "Juniper",
+    "Maple",
+    "Olive",
+    "Hazel",
+    "Jasmine",
+    "Lavender",
+    "Poppy",
+    "Violet",
+    "Daisy",
+    "Aster",
+    "Cedar",
+    "Aspen"
+  ];
+
+  const lastNames = [
+    "Bloom",
+    "Leaf",
+    "Root",
+    "Petal",
+    "Thorn",
+    "Branch",
+    "Stem",
+    "Sprout",
+    "Vine",
+    "Moss",
+    "Bark",
+    "Blossom",
+    "Reed",
+    "Fernwood",
+    "Greenfield",
+    "Oakley",
+    "Meadow",
+    "Wildroot",
+    "Evergreen",
+    "Hawthorn"
+  ];
+
+  const plantLocations = [
+    "Living Room",
+    "Kitchen Counter",
+    "Bedroom Windowsill",
+    "Bathroom Shelf",
+    "Dining Table",
+    "Home Office Desk",
+    "Front Porch",
+    "Back Patio",
+    "Balcony",
+    "Garden Bed",
+    "Greenhouse",
+    "Hallway Table",
+    "Bookshelf",
+    "Laundry Room",
+    "Garage Corner",
+    "Entryway",
+    "Sunroom",
+    "Fence Line",
+    "Poolside",
+    "Outdoor Deck"
+  ];
+  const pick = (a) => a[Math.floor(Math.random() * a.length)]
+  const plants = new Array(count).fill({})
+  const speciesNames = Object.keys(speciesInfo)
+  for (let i = 0; i < count; i++) {
+    plants[i] = {
+      id: i,
+      name: pick(firstNames) + " " + pick(lastNames),
+      species: pick(speciesNames),
+      nextWaterDays: Math.floor(Math.random() * 8) - 1,
+      location: pick(plantLocations),
+      health: pick(["happy", "sad", "neutral"])
+    }
+  }
+  return plants
+}
+
+export const plantInfo = createSamplePlants(8)

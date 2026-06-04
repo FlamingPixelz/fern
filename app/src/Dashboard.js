@@ -1,8 +1,8 @@
-import './Dashboard.css';
-import WaterTodaySection from './components/WaterTodaySection';
-import MyPlantsSection from './components/PlantCollectionSection';
-import { plantInfo, speciesInfo } from './plantData';
 import React from 'react';
+import './Dashboard.css';
+import MyPlantsSection from './components/PlantCollectionSection';
+import WaterTodaySection from './components/WaterTodaySection';
+import { plantInfo, speciesInfo } from './plantData';
 
 export default function Dashboard() {
 
