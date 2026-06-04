@@ -52,75 +52,77 @@ export const speciesInfo = {
   }
 }
 
+export const firstNames = [
+  "Fern",
+  "Rose",
+  "Ivy",
+  "Lily",
+  "Sage",
+  "Willow",
+  "Basil",
+  "Clover",
+  "Juniper",
+  "Maple",
+  "Olive",
+  "Hazel",
+  "Jasmine",
+  "Lavender",
+  "Poppy",
+  "Violet",
+  "Daisy",
+  "Aster",
+  "Cedar",
+  "Aspen"
+];
+
+export const lastNames = [
+  "Bloom",
+  "Leaf",
+  "Root",
+  "Petal",
+  "Thorn",
+  "Branch",
+  "Stem",
+  "Sprout",
+  "Vine",
+  "Moss",
+  "Bark",
+  "Blossom",
+  "Reed",
+  "Fernwood",
+  "Greenfield",
+  "Oakley",
+  "Meadow",
+  "Wildroot",
+  "Evergreen",
+  "Hawthorn"
+];
+
+export const plantLocations = [
+  "Living Room",
+  "Kitchen Counter",
+  "Bedroom Windowsill",
+  "Bathroom Shelf",
+  "Dining Table",
+  "Home Office Desk",
+  "Front Porch",
+  "Back Patio",
+  "Balcony",
+  "Garden Bed",
+  "Greenhouse",
+  "Hallway Table",
+  "Bookshelf",
+  "Laundry Room",
+  "Garage Corner",
+  "Entryway",
+  "Sunroom",
+  "Fence Line",
+  "Poolside",
+  "Outdoor Deck"
+];
+
 function createSamplePlants(count = 10) {
-  const firstNames = [
-    "Fern",
-    "Rose",
-    "Ivy",
-    "Lily",
-    "Sage",
-    "Willow",
-    "Basil",
-    "Clover",
-    "Juniper",
-    "Maple",
-    "Olive",
-    "Hazel",
-    "Jasmine",
-    "Lavender",
-    "Poppy",
-    "Violet",
-    "Daisy",
-    "Aster",
-    "Cedar",
-    "Aspen"
-  ];
 
-  const lastNames = [
-    "Bloom",
-    "Leaf",
-    "Root",
-    "Petal",
-    "Thorn",
-    "Branch",
-    "Stem",
-    "Sprout",
-    "Vine",
-    "Moss",
-    "Bark",
-    "Blossom",
-    "Reed",
-    "Fernwood",
-    "Greenfield",
-    "Oakley",
-    "Meadow",
-    "Wildroot",
-    "Evergreen",
-    "Hawthorn"
-  ];
-
-  const plantLocations = [
-    "Living Room",
-    "Kitchen Counter",
-    "Bedroom Windowsill",
-    "Bathroom Shelf",
-    "Dining Table",
-    "Home Office Desk",
-    "Front Porch",
-    "Back Patio",
-    "Balcony",
-    "Garden Bed",
-    "Greenhouse",
-    "Hallway Table",
-    "Bookshelf",
-    "Laundry Room",
-    "Garage Corner",
-    "Entryway",
-    "Sunroom",
-    "Fence Line",
-    "Poolside",
-    "Outdoor Deck"
-  ];
   const pick = (a) => a[Math.floor(Math.random() * a.length)]
   const plants = new Array(count).fill({})
   const speciesNames = Object.keys(speciesInfo)

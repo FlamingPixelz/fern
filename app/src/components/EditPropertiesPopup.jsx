@@ -11,7 +11,7 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 			<div className="popup">
 				<div className="title-row">
 					<span>🌿</span>
-					<h2 className="title">Edit Plant Properties</h2>
+					<h2 className="title">Plant Properties</h2>
 				</div>
 
 				<div className="divider" />

@@ -3,12 +3,14 @@ import './Dashboard.css';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
 import WelcomeMessage from './components/WelcomeMessage';
-import { plantInfo, speciesInfo } from './plantData';
+import { firstNames, lastNames, plantInfo, plantLocations, speciesInfo } from './plantData';
+import EditPropertiesPopup from './components/EditPropertiesPopup';
 
 export default function Dashboard() {
 
   const [allPlants, updateAllPlants] = React.useState(plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays))
   const [waterToday, updateWaterToday] = React.useState(allPlants.filter(p => p.nextWaterDays <= 0))
+  const [addingPlant, setAddingPlant] = React.useState(false)
 
   const handleWatered = (plantId) => {
     const copy = [...allPlants]
@@ -51,6 +53,7 @@ export default function Dashboard() {
     updateAllPlants(copy)
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
   }
+
   const handleSchedule = (plantId, days) => {
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
@@ -61,6 +64,26 @@ export default function Dashboard() {
     copy[index].interval = days
     updateAllPlants(copy)
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
+  }
+
+  const handleAddPlant = (props) => {
+    const pick = (a) => a[Math.floor(Math.random() * a.length)]
+    const id = Math.max(...allPlants.map(p => p.id)) + 1
+    const copy = [...allPlants]
+    const species = props.species && props.species.length && props.species in speciesInfo ? props.species : pick(Object.keys(speciesInfo))
+    const plant = {
+      id,
+      name: props.name && props.name.length ? props.name : pick(firstNames) + " " + pick(lastNames),
+      location: props.location && props.location.length ? props.location : pick(plantLocations),
+      species: species,
+      interval: speciesInfo[species].waterInterval,
+      nextWaterDays: speciesInfo[species].waterInterval,
+      health: "happy"
+    }
+    copy.push(plant)
+    updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays));
+    updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
+    setAddingPlant(false)
   }
 
   return (
@@ -80,11 +103,17 @@ export default function Dashboard() {
         onSchedule={handleSchedule}
       />
 
+      {addingPlant && <EditPropertiesPopup
+        onCancel={() => setAddingPlant(false)}
+        onOk={handleAddPlant}
+      />}
+
       <MyPlantsSection
         plants={allPlants}
         onDelete={handleDelete}
         onEdit={handleEdit}
         onSchedule={handleSchedule}
+        onAddPlant={() => setAddingPlant(true)}
       />
     </main>
   );
