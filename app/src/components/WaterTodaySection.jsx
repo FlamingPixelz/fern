@@ -32,7 +32,7 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 							image={speciesInfo[plant.species].image}
 							onWatered={() => onWatered(plant.id)}
 							onDelete={() => onDelete(plant.id)}
-							onEdit={() => onEdit(plant.id)}
+							onEdit={props => onEdit(plant.id, props)}
 							onSchedule={days => onSchedule(plant.id, days)}
 						/>
 					))}

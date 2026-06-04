@@ -47,7 +47,11 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 					<button className="cancel-btn" onClick={onCancel}>
 						Cancel
 					</button>
-					<button className="ok-btn" onClick={() => onOk({ name: plantName, species, location })}>
+					<button
+						className="ok-btn"
+						onClick={() => {
+							onOk({ name: plantName, species, location });
+						}}>
 						OK
 					</button>
 				</div>

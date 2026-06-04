@@ -66,7 +66,7 @@ export default function ContextMenu({ plantName = "your plant", onViewLog = () =
 						Customise schedule
 					</button>
 					<button type="button" onClick={handleEditProperties}>
-						Edit properties
+						Edit details
 					</button>
 					<button type="button" onClick={handleViewLog}>
 						View log

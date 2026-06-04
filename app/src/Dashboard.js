@@ -20,11 +20,12 @@ export default function Dashboard() {
     const plant = copy.splice(index, 1)[0]
     plant.nextWaterDays = plant.interval
     copy.push(plant);
-    updateAllPlants(copy);
+    updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays));
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
   };
 
   const handleEdit = (plantId, props) => {
+    console.log("Handle edit:", { props })
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
     if (index === -1) {
@@ -32,7 +33,7 @@ export default function Dashboard() {
       return
     }
     if (props.name && props.name.length) copy[index].name = props.name
-    if (props.species && props.species.length && props.species in Object.keys(speciesInfo)) copy[index].species = props.species
+    if (props.species && props.species.length && props.species in speciesInfo) copy[index].species = props.species
     if (props.location && props.location.length) copy[index].location = props.location
 
     updateAllPlants(copy)
