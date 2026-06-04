@@ -2,8 +2,8 @@ import React from 'react';
 import './Dashboard.css';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
-import { plantInfo, speciesInfo } from './plantData';
 import WelcomeMessage from './components/WelcomeMessage';
+import { plantInfo } from './plantData';
 
 export default function Dashboard() {
 
@@ -18,7 +18,7 @@ export default function Dashboard() {
       return
     }
     const plant = copy.splice(index, 1)[0]
-    plant.nextWaterDays = speciesInfo[plant.species].waterInterval
+    plant.nextWaterDays = plant.interval
     copy.push(plant);
     updateAllPlants(copy);
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))

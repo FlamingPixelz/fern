@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-const SPECIES_OPTIONS = ["Pothos", "Snake Plant", "Fiddle-leaf Fig", "Peace Lily", "Monstera", "Succulent", "Basil", "Lavender", "Aloe Vera", "Spider Plant"];
+import { speciesInfo } from "../plantData";
 
 export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => {} }) {
 	const [name, setName] = useState("");
@@ -27,7 +26,7 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 					<div className="select-wrapper">
 						<select className="select" value={species} onChange={e => setSpecies(e.target.value)}>
 							<option value="">-- Select species --</option>
-							{SPECIES_OPTIONS.map(s => (
+							{Object.keys(speciesInfo).map(s => (
 								<option key={s} value={s}>
 									{s}
 								</option>

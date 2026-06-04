@@ -1,34 +1,54 @@
-import basil from "./images/basil.webp"
-import pothos from "./images/pothos.webp"
+import basil from "./images/basil.png"
+import pothos from "./images/pothos.png"
 import succulent from "./images/succulent.png"
 import snakeplant from "./images/snakeplant.png"
-import peacelily from "./images/peacelily.webp"
-import monstera from "./images/monstera.webp"
+import peacelily from "./images/peacelily.png"
+import monstera from "./images/monstera.png"
+import fiddleLeafFig from "./images/fiddleleaffig.png"
+import lavender from "./images/lavender.png"
+import aloeVera from "./images/aloe.png"
+import spiderPlant from "./images/spiderplant.png"
 
 export const speciesInfo = {
   Basil: {
-    waterInterval: 1,
+    waterInterval: 2,
     image: basil
   },
   Pothos: {
-    waterInterval: 8,
+    waterInterval: 7,
     image: pothos
   },
   Succulent: {
-    waterInterval: 14,
+    waterInterval: 21,
     image: succulent
   },
   "Snake Plant": {
-    waterInterval: 7,
+    waterInterval: 18,
     image: snakeplant
   },
   "Peace Lily": {
-    waterInterval: 8,
+    waterInterval: 6,
     image: peacelily
   },
   Monstera: {
-    waterInterval: 10,
+    waterInterval: 8,
     image: monstera
+  },
+  "Fiddle-leaf Fig": {
+    waterInterval: 8,
+    image: fiddleLeafFig
+  },
+  Lavender: {
+    waterInterval: 10,
+    image: lavender
+  },
+  "Aloe Vera": {
+    waterInterval: 24,
+    image: aloeVera
+  },
+  "Spider Plant": {
+    waterInterval: 8,
+    image: spiderPlant
   }
 }
 
@@ -105,11 +125,13 @@ function createSamplePlants(count = 10) {
   const plants = new Array(count).fill({})
   const speciesNames = Object.keys(speciesInfo)
   for (let i = 0; i < count; i++) {
+    const species = pick(speciesNames)
     plants[i] = {
       id: i,
       name: pick(firstNames) + " " + pick(lastNames),
-      species: pick(speciesNames),
+      species: species,
       nextWaterDays: Math.floor(Math.random() * 8) - 1,
+      interval: speciesInfo[species].waterInterval,
       location: pick(plantLocations),
       health: pick(["happy", "sad", "neutral"])
     }

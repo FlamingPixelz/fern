@@ -42,7 +42,7 @@ export default function CustomSchedulePopup({ onClose = () => {}, onUpdateSchedu
 					<button type="button" onClick={onClose}>
 						Cancel
 					</button>
-					<button className="confirm" type="button" onClick={onUpdateSchedule(wateringDays)}>
+					<button className="confirm" type="button" onClick={() => onUpdateSchedule(wateringDays)}>
 						OK
 					</button>
 				</div>
