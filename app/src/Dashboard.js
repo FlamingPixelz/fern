@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [allPlants, updateAllPlants] = React.useState(plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays))
   const [waterToday, updateWaterToday] = React.useState(allPlants.filter(p => p.nextWaterDays <= 0))
   const [addingPlant, setAddingPlant] = React.useState(false)
+  const [showSuccess, setShowSuccess] = React.useState(false)
 
   const handleWatered = (plantId) => {
     const copy = [...allPlants]
@@ -84,10 +85,11 @@ export default function Dashboard() {
     updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays));
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
     setAddingPlant(false)
+    setShowSuccess(true)
+    setTimeout(() => setShowSuccess(false), 3000)
   }
 
   return (
-
     <main className="dashboard">
 
       <WelcomeMessage
@@ -108,6 +110,17 @@ export default function Dashboard() {
         onOk={handleAddPlant}
       />}
 
+      {showSuccess && (
+        <div style={{
+          position: "fixed", bottom: "32px", left: "50%", transform: "translateX(-50%)",
+          background: "#4e8b4e", color: "#fff", padding: "12px 28px",
+          borderRadius: "12px", fontSize: "15px", fontWeight: "500",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.15)", zIndex: 2000
+        }}>
+          ✅ Successfully created plant!
+        </div>
+      )}
+
       <MyPlantsSection
         plants={allPlants}
         onDelete={handleDelete}
@@ -115,6 +128,7 @@ export default function Dashboard() {
         onSchedule={handleSchedule}
         onAddPlant={() => setAddingPlant(true)}
       />
+
     </main>
   );
 }
