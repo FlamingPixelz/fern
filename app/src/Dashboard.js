@@ -22,36 +22,34 @@ export default function Dashboard() {
     copy.push(plant);
     updateAllPlants(copy);
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
-    console.log('Watered plant:', plantId);
   };
 
-  const handleContextMenu = (plantId) => {
-    // open context menu for plant
-    console.log('Context menu for plant:', plantId);
-  };
+  const handleEdit = (plantId, props) => { }
+  const handleDelete = (plantId) => { }
+  const handleSchedule = (plantId, days) => { }
 
   return (
 
     <main className="dashboard">
 
       <WelcomeMessage
-      
-      allPlants = {allPlants}
-      waterToday = {waterToday}
-      
+        allPlants={allPlants}
+        waterToday={waterToday}
       />
 
       <WaterTodaySection
         plants={waterToday}
         onWatered={handleWatered}
-        onContextMenu={handleContextMenu}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        onSchedule={handleSchedule}
       />
-
-      <div />
 
       <MyPlantsSection
         plants={allPlants}
-        onContextMenu={handleContextMenu}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        onSchedule={handleSchedule}
       />
     </main>
   );

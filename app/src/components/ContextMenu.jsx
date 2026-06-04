@@ -1,91 +1,101 @@
 import { useEffect, useRef, useState } from "react";
 import CustomSchedulePopup from "./CustomSchedulePopup";
 import DeletePlantPopup from "./DeletePlantPopup";
-import "./ContextMenu.css";
+import "./Components.css";
+import EditPropertiesPopup from "./EditPropertiesPopup";
 
-export default function ContextMenu({
-  plantName = "your plant",
-  onEditProperties,
-  onViewLog,
-}) {
-  const menuRef = useRef(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activePopup, setActivePopup] = useState(null);
+export default function ContextMenu({ plantName = "your plant", onViewLog = () => {}, onUpdateProps = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
+	const menuRef = useRef(null);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [activePopup, setActivePopup] = useState(null);
 
-  useEffect(() => {
-    if (!isMenuOpen) {
-      return undefined;
-    }
+	useEffect(() => {
+		if (!isMenuOpen) {
+			return undefined;
+		}
 
-    const closeMenuOnOutsideClick = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-      }
-    };
+		const closeMenuOnOutsideClick = event => {
+			if (menuRef.current && !menuRef.current.contains(event.target)) {
+				setIsMenuOpen(false);
+			}
+		};
 
-    document.addEventListener("pointerdown", closeMenuOnOutsideClick);
+		document.addEventListener("pointerdown", closeMenuOnOutsideClick);
 
-    return () => {
-      document.removeEventListener("pointerdown", closeMenuOnOutsideClick);
-    };
-  }, [isMenuOpen]);
+		return () => {
+			document.removeEventListener("pointerdown", closeMenuOnOutsideClick);
+		};
+	}, [isMenuOpen]);
 
-  const closeAll = () => {
-    setIsMenuOpen(false);
-    setActivePopup(null);
-  };
+	const closeAll = () => {
+		setIsMenuOpen(false);
+		setActivePopup(null);
+	};
 
-  const openSchedulePopup = () => {
-    setIsMenuOpen(false);
-    setActivePopup("schedule");
-  };
+	const openSchedulePopup = () => {
+		setIsMenuOpen(false);
+		setActivePopup("schedule");
+	};
 
-  const openDeletePopup = () => {
-    setIsMenuOpen(false);
-    setActivePopup("delete");
-  };
+	const openDeletePopup = () => {
+		setIsMenuOpen(false);
+		setActivePopup("delete");
+	};
 
-  const handleEditProperties = () => {
-    setIsMenuOpen(false);
-    onEditProperties?.();
-  };
+	const handleEditProperties = () => {
+		setIsMenuOpen(false);
+		setActivePopup("edit");
+	};
 
-  const handleViewLog = () => {
-    setIsMenuOpen(false);
-    onViewLog?.();
-  };
+	const handleViewLog = () => {
+		setIsMenuOpen(false);
+		onViewLog();
+	};
 
-  return (
-    <div className="context-menu-container" ref={menuRef}>
-      <button
-        className="context-menu-trigger"
-        type="button"
-        onClick={() => setIsMenuOpen((current) => !current)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+	return (
+		<div className="context-menu-container" ref={menuRef}>
+			<button className="context-menu-trigger" type="button" onClick={() => setIsMenuOpen(current => !current)}>
+				<span />
+				<span />
+				<span />
+			</button>
 
-      {isMenuOpen && (
-        <div className="context-menu-panel">
-          <button type="button" onClick={openSchedulePopup}>
-            Customise schedule
-          </button>
-          <button type="button" onClick={handleEditProperties}>
-            Edit properties
-          </button>
-          <button type="button" onClick={handleViewLog}>
-            View log
-          </button>
-          <button className="danger" type="button" onClick={openDeletePopup}>
-            Delete plant
-          </button>
-        </div>
-      )}
+			{isMenuOpen && (
+				<div className="context-menu-panel">
+					<button type="button" onClick={openSchedulePopup}>
+						Customise schedule
+					</button>
+					<button type="button" onClick={handleEditProperties}>
+						Edit properties
+					</button>
+					<button type="button" onClick={handleViewLog}>
+						View log
+					</button>
+					<button className="danger" type="button" onClick={openDeletePopup}>
+						Delete plant
+					</button>
+				</div>
+			)}
 
-      {activePopup === "schedule" && <CustomSchedulePopup onClose={closeAll} />}
-      {activePopup === "delete" && <DeletePlantPopup plantName={plantName} onClose={closeAll} />}
-    </div>
-  );
+			{activePopup === "schedule" && (
+				<CustomSchedulePopup
+					onClose={closeAll}
+					onUpdateSchedule={days => {
+						closeAll();
+						onSchedule(days);
+					}}
+				/>
+			)}
+			{activePopup === "delete" && <DeletePlantPopup plantName={plantName} onClose={closeAll} onDelete={onDelete} />}
+			{activePopup === "edit" && (
+				<EditPropertiesPopup
+					onCancel={closeAll}
+					onOk={props => {
+						closeAll();
+						onUpdateProps(props);
+					}}
+				/>
+			)}
+		</div>
+	);
 }

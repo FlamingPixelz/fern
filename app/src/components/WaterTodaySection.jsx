@@ -3,7 +3,7 @@ import WaterListItem from "./WaterListItem";
 import wateringcan from "../images/wateringcan.gif";
 import { speciesInfo } from "../plantData";
 
-export default function WaterTodaySection({ plants = [], onWatered = () => {}, onContextMenu = () => {} }) {
+export default function WaterTodaySection({ plants = [], onWatered = () => {}, onEdit = () => {}, onDelete = () => {}, onSchedule = () => {} }) {
 	return (
 		<section>
 			<div className="heading-bar">
@@ -31,7 +31,9 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 							health={plant.health}
 							image={speciesInfo[plant.species].image}
 							onWatered={() => onWatered(plant.id)}
-							onContextMenu={() => onContextMenu(plant.id)}
+							onDelete={() => onDelete(plant.id)}
+							onEdit={() => onEdit(plant.id)}
+							onSchedule={days => onSchedule(plant.id, days)}
 						/>
 					))}
 				</div>

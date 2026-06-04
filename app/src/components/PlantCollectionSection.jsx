@@ -1,11 +1,10 @@
-import "./PlantListItem.css";
+import "./Components.css";
 import PlantListItem from "./PlantListItem";
 import { speciesInfo } from "../plantData";
 
-export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onContextMenu = () => {} }) {
+export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onDelete = () => {}, onEdit = () => {}, onSchedule = () => {} }) {
 	const plantsInGoodHealth = plants.filter(p => p.health === "happy").length;
 	const plantsInBadHealth = plants.filter(p => p.health === "sad").length;
-
 	return (
 		<section>
 			<div className="heading-bar">
@@ -19,7 +18,7 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 				</button>
 
 				<span className="welcome-message"> Healthy: {plantsInGoodHealth}</span>
-        		<span className="welcome-message"> Needs Love: {plantsInBadHealth}</span>
+				<span className="welcome-message"> Needs Love: {plantsInBadHealth}</span>
 			</div>
 
 			<div className="plant-scroll-wrapper">
@@ -33,7 +32,9 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 							nextWaterDays={plant.nextWaterDays}
 							image={speciesInfo[plant.species].image}
 							health={plant.health}
-							onContextMenu={() => onContextMenu(plant.id)}
+							onDelete={() => onDelete(plant.id)}
+							onEdit={props => onEdit(plant.id, props)}
+							onSchedule={days => onSchedule(plant.id, days)}
 						/>
 					))}
 				</ul>

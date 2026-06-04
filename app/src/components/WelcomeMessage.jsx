@@ -1,4 +1,4 @@
-import './PlantListItem.css';
+import "./Components.css";
 
 export default function WelcomeMessage({ allPlants = [], waterToday = [] }) {
 	const plantsInGoodHealth = allPlants.filter(p => p.health === "happy").length;
@@ -7,8 +7,8 @@ export default function WelcomeMessage({ allPlants = [], waterToday = [] }) {
 		<section>
 			<div className="heading-bar">
 				<h2>Welcome Back!</h2>
-				<div className = "date">
-					<p>Today is {new Date().toDateString()}.</p>						
+				<div className="date">
+					<p>Today is {new Date().toDateString()}.</p>
 				</div>
 			</div>
 			{/* <div className="welcome-message">
