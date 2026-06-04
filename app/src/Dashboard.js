@@ -1,7 +1,7 @@
 import './Dashboard.css';
 import WaterTodaySection from './components/WaterTodaySection';
 import MyPlantsSection from './components/PlantCollectionSection';
-import { plantInfo } from './plantData';
+import { plantInfo, speciesInfo } from './plantData';
 import React from 'react';
 
 export default function Dashboard() {
@@ -12,12 +12,12 @@ export default function Dashboard() {
   const handleWatered = (plantId) => {
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
-    if (index === undefined) {
+    if (index === -1) {
       console.error("Error, no plant with id:", plantId, "exists...")
       return
     }
     const plant = copy.splice(index, 1)[0]
-    plant.nextWaterDays = 7 // TODO: Add watering frequency to plant info so that this doesn't just increment by a week every time.
+    plant.nextWaterDays = speciesInfo[plant.species].waterInterval
     copy.push(plant);
     updateAllPlants(copy);
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
