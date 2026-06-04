@@ -7,6 +7,7 @@ export default function EditPropertiesPopup({
   initialName = "",
   initialSpecies = "",
   initialLocation = ""
+  title = "Add Plant Properties"
 }) {
   const [plantName, setName] = useState(initialName);
   const [species, setSpecies] = useState(initialSpecies);
@@ -17,7 +18,7 @@ export default function EditPropertiesPopup({
       <div className="popup">
         <div className="title-row">
           <span>🌿</span>
-          <h2 className="title">Plant Properties</h2>
+          <h2 className="title">{title}</h2>
         </div>
         <div className="divider" />
         <div className="field-row">
