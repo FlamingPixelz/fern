@@ -1,6 +1,8 @@
 import "./Components.css";
 import PlantListItem from "./PlantListItem";
 import { speciesInfo } from "../plantData";
+import alivePlant from "../images/alocasia.png"
+import deadPlant from "../images/dead.png"
 
 export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onDelete = () => {}, onEdit = () => {}, onSchedule = () => {} }) {
 	const plantsInGoodHealth = plants.filter(p => p.health === "happy").length;
@@ -13,12 +15,16 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 					My Plants
 				</h2>
 
+				<span className="welcome-message"> <img className ="status-icon" src={alivePlant} alt=""></img>
+				Healthy: {plantsInGoodHealth}
+				</span>
+				<span className="welcome-message"> <img className ="status-icon" src={deadPlant} alt=""></img>
+				Needs Love: {plantsInBadHealth}</span>
+
 				<button className="add-plant-button" onClick={onAddPlant}>
 					+ Add new plant
 				</button>
 
-				<span className="welcome-message"> Healthy: {plantsInGoodHealth}</span>
-				<span className="welcome-message"> Needs Love: {plantsInBadHealth}</span>
 			</div>
 
 			<div className="plant-scroll-wrapper">
