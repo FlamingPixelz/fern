@@ -264,8 +264,15 @@
 	font-size: 1.1rem;
 	font-weight: 600;
 	color: #000;
+	border: 1.5px dashed #d0ccc6;
 	border-radius: 16px;
 	background: #fafaf8;
 	min-height: 150px;
 	margin-bottom: 1rem;
+}
+
+.date {
+	text-align: center;
+	margin-right: 45%;
+	font-family: "Bricolage Grotesque", serif;
 }

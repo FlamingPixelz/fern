@@ -3,6 +3,7 @@ import './Dashboard.css';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
 import { plantInfo, speciesInfo } from './plantData';
+import WelcomeMessage from './components/WelcomeMessage';
 
 export default function Dashboard() {
 
@@ -32,6 +33,14 @@ export default function Dashboard() {
   return (
 
     <main className="dashboard">
+
+      <WelcomeMessage
+      
+      allPlants = {allPlants}
+      waterToday = {waterToday}
+      
+      />
+
       <WaterTodaySection
         plants={waterToday}
         onWatered={handleWatered}
