@@ -136,16 +136,17 @@ function createSamplePlants(count = 10) {
   const pick = (a) => a[Math.floor(Math.random() * a.length)]
   const plants = new Array(count).fill({})
   const speciesNames = Object.keys(speciesInfo)
+  const nextWater = Math.floor(Math.random() * 8) - 1
   for (let i = 0; i < count; i++) {
     const species = pick(speciesNames)
     plants[i] = {
       id: i,
       name: pick(firstNames) + " " + pick(lastNames),
       species: species,
-      nextWaterDays: Math.floor(Math.random() * 8) - 1,
+      nextWaterDays: nextWater,
       interval: speciesInfo[species].waterInterval,
       location: pick(plantLocations),
-      health: pick(["happy", "sad", "neutral"])
+      health: pick([nextWater < 0 ? "sad" : "happy", "sad", "neutral"])
     }
   }
   return plants
