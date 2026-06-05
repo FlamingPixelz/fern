@@ -87,6 +87,7 @@ export default function ContextMenu({
 			{activePopup === "schedule" && (
 				<CustomSchedulePopup
 					plantSpecies={plantSpecies}
+					currentWateringDays={plantInterval}
 					onClose={closeAll}
 					onUpdateSchedule={days => {
 						closeAll();

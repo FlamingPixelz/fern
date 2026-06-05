@@ -564,6 +564,17 @@
 	font-weight: 600;
 }
 
+.schedule-restored {
+	margin: 10px 0 0;
+	padding: 8px 10px;
+	border: 1px solid #dbe6d0;
+	border-radius: 12px;
+	background: #f4faef;
+	color: #45633a;
+	font-size: 14px;
+	font-weight: 600;
+}
+
 /* Delete plant popup */
 
 .delete-popup {
