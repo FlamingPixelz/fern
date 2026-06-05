@@ -12,58 +12,55 @@ import spiderPlant from "./images/spiderplant.png"
 export const speciesInfo = {
   Basil: {
     waterInterval: 2,
+    recommendedFrequency: "2-3 days",
     image: basil
   },
   Pothos: {
     waterInterval: 7,
+    recommendedFrequency: "7-14 days",
     image: pothos
   },
   Succulent: {
     waterInterval: 21,
+    recommendedFrequency: "21-30 days",
     image: succulent
   },
   "Snake Plant": {
     waterInterval: 18,
+    recommendedFrequency: "14-21 days",
     image: snakeplant
   },
   "Peace Lily": {
     waterInterval: 6,
+    recommendedFrequency: "5-7 days",
     image: peacelily
   },
   Monstera: {
     waterInterval: 8,
+    recommendedFrequency: "7-10 days",
     image: monstera
   },
   "Fiddle-leaf Fig": {
     waterInterval: 8,
+    recommendedFrequency: "7-10 days",
     image: fiddleLeafFig
   },
   Lavender: {
     waterInterval: 10,
+    recommendedFrequency: "10-14 days",
     image: lavender
   },
   "Aloe Vera": {
     waterInterval: 24,
+    recommendedFrequency: "21-28 days",
     image: aloeVera
   },
   "Spider Plant": {
     waterInterval: 8,
+    recommendedFrequency: "7-10 days",
     image: spiderPlant
   }
-}
-
-export const recommendedWateringFrequency = {
-  Basil: "2-3 days",
-  Pothos: "7-14 days",
-  Succulent: "21-30 days",
-  "Snake Plant": "14-21 days",
-  "Peace Lily": "5-7 days",
-  Monstera: "7-10 days",
-  "Fiddle-leaf Fig": "7-10 days",
-  Lavender: "10-14 days",
-  "Aloe Vera": "21-28 days",
-  "Spider Plant": "7-10 days"
-}
+};
 
 export const firstNames = [
   "Fern",

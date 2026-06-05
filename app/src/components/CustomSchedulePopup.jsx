@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { recommendedWateringFrequency } from "../plantData";
+import { speciesInfo } from "../plantData";
 
 export default function CustomSchedulePopup({ plantSpecies = "", onClose = () => {}, onUpdateSchedule = () => {} }) {
 	const [wateringDays, setWateringDays] = useState("");
-	const recommendation = recommendedWateringFrequency[plantSpecies] || "7-14 days";
+	const recommendation = speciesInfo[plantSpecies].recommendedFrequency || "7-14 days";
 	const recommendationText = recommendation.replace(/\s*days?$/i, "").replace("-", " - ");
 
 	const getValidationMessage = () => {
