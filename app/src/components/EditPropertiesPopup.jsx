@@ -17,7 +17,7 @@ export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => 
 	const manualWateringNumber = Number(manualWateringDays);
 	const isManualWateringValid = /^\d+$/.test(manualWateringDays) && manualWateringNumber > 0;
 	const wateringDays = isManualWateringValid ? manualWateringNumber : defaultWateringDays;
-	const recommendation = speciesInfo[species].recommendedFrequency;
+	const recommendation = species in speciesInfo ? speciesInfo[species].recommendedFrequency : "";
 	const wateringWarning =
 		manualWateringDays && !isManualWateringValid
 			? "Please enter a whole number greater than 0."

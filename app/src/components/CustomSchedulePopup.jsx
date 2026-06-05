@@ -3,7 +3,7 @@ import { speciesInfo } from "../plantData";
 
 export default function CustomSchedulePopup({ plantSpecies = "", onClose = () => {}, onUpdateSchedule = () => {} }) {
 	const [wateringDays, setWateringDays] = useState("");
-	const recommendation = speciesInfo[plantSpecies].recommendedFrequency || "7-14 days";
+	const recommendation = plantSpecies in speciesInfo ? speciesInfo[plantSpecies].recommendedFrequency : "7-14 days";
 	const recommendationText = recommendation.replace(/\s*days?$/i, "").replace("-", " - ");
 
 	const getValidationMessage = () => {

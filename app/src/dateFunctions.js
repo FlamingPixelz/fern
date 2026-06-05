@@ -50,9 +50,8 @@ export function deriveLastWatered(interval, nextWaterDays) {
 }
 export function parseFrequencyRange(species) {
 	const fallback = [1, 30];
+	if (!(species in speciesInfo)) return fallback
 	const recommendation = speciesInfo[species].recommendedFrequency;
-
-	if (!recommendation) return fallback;
 
 	const match = recommendation.match(/(\d+)\s*-\s*(\d+)/);
 	if (!match) return fallback;
