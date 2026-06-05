@@ -4,15 +4,15 @@ import potSizeGuide from "../images/pot-size-guide.png";
 import { parseFrequencyRange, parseLastWateredDate } from "../dateFunctions";
 
 export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => {}, initialName = "", initialSpecies = "", initialLocation = "", initialWateringFrequency = null, initialLastWatered = "", title = "Add Plant Properties" }) {
+	const initialWateringDays = Number.isInteger(initialWateringFrequency) && initialWateringFrequency > 0 ? initialWateringFrequency : null;
 	const [plantName, setName] = useState(initialName);
 	const [species, setSpecies] = useState(initialSpecies);
 	const [location, setLocation] = useState(initialLocation);
-	const [manualWateringDays, setManualWateringDays] = useState("");
+	const [manualWateringDays, setManualWateringDays] = useState(initialWateringDays ? String(initialWateringDays) : "");
 	const [lastWatered, setLastWatered] = useState(initialLastWatered);
 	const [submitAttempted, setSubmitAttempted] = useState(false);
 
 	const [minWaterDays, maxWaterDays] = parseFrequencyRange(species);
-	const initialWateringDays = Number.isInteger(initialWateringFrequency) && initialWateringFrequency > 0 ? initialWateringFrequency : null;
 	const defaultWateringDays = species === initialSpecies && initialWateringDays ? initialWateringDays : Math.round((minWaterDays + maxWaterDays) / 2);
 	const manualWateringNumber = Number(manualWateringDays);
 	const isManualWateringValid = /^\d+$/.test(manualWateringDays) && manualWateringNumber > 0;
