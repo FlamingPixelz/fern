@@ -462,6 +462,13 @@
 	color: #2f6f2d;
 }
 
+.context-popup-actions .confirm:disabled {
+	border-color: #dedbd5;
+	background: #eeeeec;
+	color: #8a8a85;
+	cursor: not-allowed;
+}
+
 .context-popup-actions .danger {
 	border-color: #f2d3cf;
 	background: #f8e4e1;

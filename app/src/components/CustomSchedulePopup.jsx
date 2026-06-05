@@ -23,6 +23,15 @@ export default function CustomSchedulePopup({ plantSpecies = "", onClose = () =>
 	};
 
 	const validationMessage = getValidationMessage();
+	const canSubmit = wateringDays !== "" && validationMessage === "";
+
+	const handleSubmit = () => {
+		if (!canSubmit) {
+			return;
+		}
+
+		onUpdateSchedule(wateringDays);
+	};
 
 	return (
 		<div className="context-modal-backdrop">
@@ -45,7 +54,7 @@ export default function CustomSchedulePopup({ plantSpecies = "", onClose = () =>
 					<button type="button" onClick={onClose}>
 						Cancel
 					</button>
-					<button className="confirm" type="button" onClick={() => onUpdateSchedule(wateringDays)}>
+					<button className="confirm" type="button" onClick={handleSubmit} disabled={!canSubmit}>
 						OK
 					</button>
 				</div>
