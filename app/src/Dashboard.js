@@ -70,8 +70,12 @@ export default function Dashboard() {
       console.error("Error, no plant with id:", plantId, "exists...")
       return
     }
+    const oldInterval = copy[index].interval
+    const oldNextWaterDays = copy[index].nextWaterDays
     copy[index].interval = days
-    updateAllPlants(copy)
+    const lastWateredDate = parseLastWateredDate(copy[index].lastWatered).date
+    copy[index].nextWaterDays = lastWateredDate ? days - getDaysSince(lastWateredDate) : days - (oldInterval - oldNextWaterDays)
+    updateAllPlants(copy.sort((a, b) => a.nextWaterDays - b.nextWaterDays))
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
   }
 
