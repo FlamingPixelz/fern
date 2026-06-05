@@ -119,6 +119,7 @@
 .icon-wrapper {
 	position: relative;
 	display: inline-block;
+	cursor: default;
 }
 
 .icon-wrapper .tooltip {
@@ -505,6 +506,28 @@
 	font-weight: 500;
 	text-align: center;
 	outline: none;
+}
+
+.schedule {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #cacaca;
+  border: 1px solid;
+  color: #585858;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.health-and-schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .schedule-input-row input::placeholder {

@@ -24,6 +24,13 @@ export default function PlantListItem({ name = "Plant", species = "", location =
               <img className="health-icon" src={healthIcon} alt={healthLabel} />
               <span className="tooltip">{healthTooltip}</span>
             </div>
+
+            <div className = "icon-wrapper">
+               <div className = "schedule">{interval}
+                <span className="tooltip">This plant is on a {interval} day schedule</span>
+              </div>
+            </div>
+
             <ContextMenu 
               plantName={name}
               plantSpecies={species}
@@ -42,7 +49,7 @@ export default function PlantListItem({ name = "Plant", species = "", location =
           <img className="plantImage" src={image} alt={`${name} plant`} />
           <div className="card-location">{location}</div>
           {isOverdue ? (
-            <span className="plant-next-water"> 💧Overdue {overdueDays} Day{overdueDays === 1 ? "" : "s"} </span>
+            <span className="plant-next-water overdue"> 💧Overdue {overdueDays} Day{overdueDays === 1 ? "" : "s"} </span>
           ) : (
             <span className="plant-next-water"> 💧{nextWaterDays} Day{nextWaterDays === 1 ? "" : "s"} </span>
           )}
