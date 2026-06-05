@@ -1,42 +1,7 @@
 import { useState } from "react";
 import { speciesInfo } from "../plantData";
 import potSizeGuide from "../images/pot-size-guide.png";
-
-function parseFrequencyRange(species) {
-	const fallback = [1, 30];
-	const recommendation = speciesInfo[species].recommendedFrequency;
-
-	if (!recommendation) return fallback;
-
-	const match = recommendation.match(/(\d+)\s*-\s*(\d+)/);
-	if (!match) return fallback;
-
-	return [Number(match[1]), Number(match[2])];
-}
-
-function parseLastWateredDate(value) {
-	if (!value) return { date: null, warning: "" };
-	if (!/^\d{2}\/\d{2}\/\d{4}$/.test(value)) {
-		return { date: null, warning: "Use dd/mm/yyyy format." };
-	}
-
-	const [day, month, year] = value.split("/").map(Number);
-	const date = new Date(year, month - 1, day);
-	const isRealDate = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
-
-	if (!isRealDate) {
-		return { date: null, warning: "Enter a real calendar date." };
-	}
-
-	const today = new Date();
-	today.setHours(0, 0, 0, 0);
-
-	if (date > today) {
-		return { date: null, warning: "Last watered cannot be after today." };
-	}
-
-	return { date, warning: "" };
-}
+import { parseFrequencyRange, parseLastWateredDate } from "../dateFunctions";
 
 export default function EditPropertiesPopup({ onCancel = () => {}, onOk = () => {}, initialName = "", initialSpecies = "", initialLocation = "", initialWateringFrequency = null, initialLastWatered = "", title = "Add Plant Properties" }) {
 	const [plantName, setName] = useState(initialName);

@@ -1,42 +1,11 @@
 import React from 'react';
 import './Dashboard.css';
+import EditPropertiesPopup from './components/EditPropertiesPopup';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
 import WelcomeMessage from './components/WelcomeMessage';
+import { formatDate, parseLastWateredDate, getDaysSince } from './dateFunctions';
 import { firstNames, lastNames, plantInfo, plantLocations, speciesInfo } from './plantData';
-import EditPropertiesPopup from './components/EditPropertiesPopup';
-
-function parseLastWateredDate(value) {
-  if (!/^\d{2}\/\d{2}\/\d{4}$/.test(value || "")) return null
-
-  const [day, month, year] = value.split("/").map(Number)
-  const date = new Date(year, month - 1, day)
-  const isRealDate = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
-
-  if (!isRealDate) return null
-
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  if (date > today) return null
-
-  return date
-}
-
-function getDaysSince(date) {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  return Math.floor((today - date) / (1000 * 60 * 60 * 24))
-}
-
-function formatDate(date) {
-  const day = String(date.getDate()).padStart(2, "0")
-  const month = String(date.getMonth() + 1).padStart(2, "0")
-  const year = date.getFullYear()
-
-  return `${day}/${month}/${year}`
-}
 
 export default function Dashboard() {
 
@@ -74,7 +43,7 @@ export default function Dashboard() {
     if (Number.isInteger(props.wateringFrequency) && props.wateringFrequency > 0) copy[index].interval = props.wateringFrequency
     if (props.lastWatered && props.lastWatered.length) {
       copy[index].lastWatered = props.lastWatered
-      const lastWateredDate = parseLastWateredDate(props.lastWatered)
+      const lastWateredDate = parseLastWateredDate(props.lastWatered).date
       if (lastWateredDate) copy[index].nextWaterDays = copy[index].interval - getDaysSince(lastWateredDate)
     }
 
@@ -112,7 +81,7 @@ export default function Dashboard() {
     const copy = [...allPlants]
     const species = props.species && props.species.length && props.species in speciesInfo ? props.species : pick(Object.keys(speciesInfo))
     const interval = Number.isInteger(props.wateringFrequency) && props.wateringFrequency > 0 ? props.wateringFrequency : speciesInfo[species].waterInterval
-    const lastWateredDate = parseLastWateredDate(props.lastWatered)
+    const lastWateredDate = parseLastWateredDate(props.lastWatered).date
     const nextWaterDays = lastWateredDate ? interval - getDaysSince(lastWateredDate) : interval
     const plant = {
       id,
