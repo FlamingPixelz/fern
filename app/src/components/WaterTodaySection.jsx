@@ -1,6 +1,6 @@
 import "./PlantListItem";
 import "./Components.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import WaterListItem from "./WaterListItem";
 import wateringcan from "../images/wateringcan.gif";
 import { speciesInfo } from "../plantData";
@@ -14,6 +14,20 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 			scrollRef.current.scrollLeft += event.deltaY * 4;
 		}
 	};
+
+	useEffect(() => {
+		const scrollElement = scrollRef.current;
+
+		if (scrollElement) {
+			scrollElement.addEventListener("wheel", handleWheel, { passive: false });
+		}
+
+		return () => {
+			if (scrollElement) {
+				scrollElement.removeEventListener("wheel", handleWheel);
+			}
+		};
+	});
 
 	return (
 		<section>
@@ -36,7 +50,6 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 				<div
 					ref={scrollRef}
 					className="cards-row plant-scroll-wrapper"
-					onWheel={handleWheel}
 				>
 					{plants.map(plant => (
 						<WaterListItem

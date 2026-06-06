@@ -1,5 +1,5 @@
 import "./Components.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import PlantListItem from "./PlantListItem";
 import { speciesInfo } from "../plantData";
 import alivePlant from "../images/alocasia.png"
@@ -16,6 +16,20 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 			scrollRef.current.scrollLeft += event.deltaY * 4;
 		}
 	};
+
+	useEffect(() => {
+		const scrollElement = scrollRef.current;
+
+		if (scrollElement) {
+			scrollElement.addEventListener("wheel", handleWheel, { passive: false });
+		}
+
+		return () => {
+			if (scrollElement) {
+				scrollElement.removeEventListener("wheel", handleWheel);
+			}
+		};
+	});
 
 	return (
 		<section>
@@ -40,7 +54,6 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 			<div
 				ref={scrollRef}
 				className="plant-scroll-wrapper"
-				onWheel={handleWheel}
 			>
 				<ul className="plant-list">
 					{plants.map(plant => (
