@@ -9,6 +9,7 @@ import lavender from "./images/lavender.png"
 import aloeVera from "./images/aloe.png"
 import spiderPlant from "./images/spiderplant.png"
 
+// Central map for species name to species-related info
 export const speciesInfo = {
   Basil: {
     waterInterval: 2,
@@ -62,6 +63,7 @@ export const speciesInfo = {
   }
 };
 
+// Sample first names for demo
 export const firstNames = [
   "Fern",
   "Rose",
@@ -85,6 +87,7 @@ export const firstNames = [
   "Aspen"
 ];
 
+// Sample last names for demo
 export const lastNames = [
   "Bloom",
   "Leaf",
@@ -108,6 +111,7 @@ export const lastNames = [
   "Hawthorn"
 ];
 
+// Sample locations for demo
 export const plantLocations = [
   "Living Room",
   "Kitchen Counter",
@@ -131,8 +135,8 @@ export const plantLocations = [
   "Outdoor Deck"
 ];
 
+// Faker sample data generator
 function createSamplePlants(count = 10) {
-
   const pick = (a) => a[Math.floor(Math.random() * a.length)]
   const plants = new Array(count).fill({})
   const speciesNames = Object.keys(speciesInfo)

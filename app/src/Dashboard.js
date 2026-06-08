@@ -8,16 +8,21 @@ import { formatDate, parseLastWateredDate, getDaysSince } from './dateFunctions'
 import { firstNames, lastNames, plantInfo, plantLocations, speciesInfo } from './plantData';
 
 export default function Dashboard() {
-
+  // Reactive collection of all plants
   const [allPlants, updateAllPlants] = React.useState(plantInfo.toSorted((a, b) => a.nextWaterDays - b.nextWaterDays))
+  // Reactive collection filtered from all plants
   const [waterToday, updateWaterToday] = React.useState(allPlants.filter(p => p.nextWaterDays <= 0))
+  // Flag for whether the user is currently adding a new plant
   const [addingPlant, setAddingPlant] = React.useState(false)
+  // Flag for whether to show the success message
   const [showSuccess, setShowSuccess] = React.useState(false)
 
+  // Internal handler for logging a watering
   const handleWatered = (plantId) => {
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
     if (index === -1) {
+      // In case the app is tampered with and an invalid id is used here
       console.error("Error, no plant with id:", plantId, "exists...")
       return
     }
@@ -29,6 +34,7 @@ export default function Dashboard() {
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
   };
 
+  // Handler for property submission
   const handleEdit = (plantId, props) => {
     console.log("Handle edit:", { props })
     const copy = [...allPlants]
@@ -51,6 +57,7 @@ export default function Dashboard() {
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
   }
 
+  // Handler for deleting a plant, after delete confirmation
   const handleDelete = (plantId) => {
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
@@ -63,6 +70,7 @@ export default function Dashboard() {
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0));
   }
 
+  // Handler for updating watering schedule after submission
   const handleSchedule = (plantId, days) => {
     const copy = [...allPlants]
     const index = copy.findIndex(p => p.id === plantId)
@@ -79,6 +87,7 @@ export default function Dashboard() {
     updateWaterToday(copy.filter(p => p.nextWaterDays <= 0))
   }
 
+  // Handler for adding a new plant, after submission
   const handleAddPlant = (props) => {
     const pick = (a) => a[Math.floor(Math.random() * a.length)]
     const id = Math.max(...allPlants.map(p => p.id)) + 1
