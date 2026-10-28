@@ -1,8 +1,9 @@
 # React Prototype
 
+<p align="center">
 <img width="427" height="240" alt="Screenshot 2026-10-29 at 02 21 40" src="https://github.com/user-attachments/assets/a7082604-ca00-4bec-aa5a-b37f424a1ee3" />
-
 <img width="427" height="240" alt="Screenshot 2026-10-29 at 02 11 25" src="https://github.com/user-attachments/assets/92057c9b-06eb-407b-bd9f-4db2a1798158" />
+</p>
 
 ** This Project was initially for an assignment for Interactive Systems Design at Adelaide University, with three other contributors. I have since decided to extend from the original prototype and develop it into a full application.
 
