@@ -3,7 +3,7 @@ import './Dashboard.css';
 import EditPropertiesPopup from './components/EditPropertiesPopup';
 import MyPlantsSection from './components/PlantCollectionSection';
 import WaterTodaySection from './components/WaterTodaySection';
-import WelcomeMessage from './components/WelcomeMessage';
+
 import { formatDate, parseLastWateredDate, getDaysSince } from './dateFunctions';
 import { firstNames, lastNames, plantInfo, plantLocations, speciesInfo } from './plantData';
 
@@ -117,10 +117,6 @@ export default function Dashboard() {
   return (
     <main className="dashboard">
 
-      <WelcomeMessage
-        allPlants={allPlants}
-        waterToday={waterToday}
-      />
 
       <WaterTodaySection
         plants={waterToday}

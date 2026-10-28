@@ -6,8 +6,6 @@ import alivePlant from "../images/alocasia.png"
 import deadPlant from "../images/dead.png"
 
 export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, onDelete = () => {}, onEdit = () => {}, onSchedule = () => {} }) {
-	const plantsInGoodHealth = plants.filter(p => p.health === "happy").length;
-	const plantsInBadHealth = plants.filter(p => p.health === "sad").length;
 	const scrollRef = useRef(null);
 
 	const handleWheel = (event) => {
@@ -35,15 +33,8 @@ export default function MyPlantsSection({ plants = [], onAddPlant = () => {}, on
 		<section>
 			<div className="heading-bar">
 				<h2>
-					<span>🍃</span>
 					My Plants
 				</h2>
-
-				<span className="welcome-message"> <img className ="status-icon" src={alivePlant} alt=""></img>
-				Healthy: {plantsInGoodHealth}
-				</span>
-				<span className="welcome-message"> <img className ="status-icon" src={deadPlant} alt=""></img>
-				Needs Love: {plantsInBadHealth}</span>
 
 				<button className="add-plant-button" onClick={onAddPlant}>
 					+ Add new plant

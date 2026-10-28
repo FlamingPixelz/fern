@@ -33,7 +33,6 @@ export default function WaterTodaySection({ plants = [], onWatered = () => {}, o
 		<section>
 			<div className="heading-bar">
 				<h2>
-					<span>💧</span>
 					Water today!
 				</h2>
 				<button className="log-button" onClick={() => alert("You are navigating to another page...")}>
