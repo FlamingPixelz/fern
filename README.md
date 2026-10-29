@@ -1,15 +1,15 @@
-# React Prototype
+# Fern Overview
+*This Project was initially for an assignment for Interactive Systems Design at Adelaide University, with three other contributors. I have since decided to extend from the original prototype and develop it into a full application.*
 
 <p align="center">
 <img width="400" height="210" alt="Screenshot 2026-10-29 at 02 21 40" src="https://github.com/user-attachments/assets/a7082604-ca00-4bec-aa5a-b37f424a1ee3" />
 <img width="400" height="210" alt="Screenshot 2026-10-29 at 02 11 25" src="https://github.com/user-attachments/assets/92057c9b-06eb-407b-bd9f-4db2a1798158" />
 </p>
 
-** This Project was initially for an assignment for Interactive Systems Design at Adelaide University, with three other contributors. I have since decided to extend from the original prototype and develop it into a full application.
-
 Everyone who has ever owned indoor plants know how easy it is to forget them or overwater them. This simple web application provides an easy way to keep a healthy schedule for your beloved plants and tell you when you need to water them. Pretty simple, right?
 
 ## Features
+**This is currently an interactive prototype and doesn't remember user data, so refreshing the page will reset the page to show random plants**
 
 - Add new plants by giving it a name, specifying the species, its location, its pot size, and the last time you watered it
 - A watering schedule is automatically set based on the species and pot size, or add a custom schedule
@@ -38,5 +38,7 @@ The current prototype is quite lacking in features. I plan to:
 - Add a database so user data is persistent
 - Add the water logging feature for each plant, as designed in the wireframe
 - Convert the project into a desktop application using Electron, since this app is meant to be simple and not need to be online / have login features
-- Redesign the UI to a pixel art aesthetic
+- Create a notification system that tells the user that plants need watering today
+- Unit tests and good security practice
+- Redesign the UI to a pixel art aesthetic made in Asperite
 
